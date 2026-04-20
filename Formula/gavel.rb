@@ -51,8 +51,6 @@ class Gavel < Formula
     assert_predicate bin/"gavel-hook", :executable?
   end
 
-  private
-
   def migrate_from_manual_install
     old_label = "com.gavel.daemon"
     old_plist = Pathname.new("#{Dir.home}/Library/LaunchAgents/#{old_label}.plist")
