@@ -2,7 +2,7 @@ class Gavel < Formula
   desc "Native macOS approval daemon for Claude Code session monitoring"
   homepage "https://github.com/JaysonRawlins/claude-gavel"
   url "https://github.com/JaysonRawlins/claude-gavel/releases/download/v1.0.0/gavel-v1.0.0-macos-arm64.tar.gz"
-  sha256 "5ae53c77258a9ddb5d1ecbf55a26e7057f58e01f6c05683bd73bbc3a768d650b"
+  sha256 "3b505ce877a830451b0bc53b8ee7bc347e2ab07bf9388e86d0f3004e75b65ca5"
   license "MIT"
   version "1.0.0"
 
@@ -11,15 +11,15 @@ class Gavel < Formula
   def install
     bin.install "gavel"
     bin.install "gavel-hook"
+    bin.install "scripts/gavel-setup"
     bin.install "scripts/gavel-uninstall-hooks"
     (share/"gavel/hooks").install Dir["hooks/*.sh"]
     (share/"gavel/defaults").install "defaults/session-context.md"
   end
 
   def post_install
-    migrate_from_manual_install
-    setup_user_config
-    register_hooks_in_settings
+    # Homebrew sandboxes post_install — can't write to ~/
+    # Setup is handled by gavel-setup script that the user runs
   end
 
   service do
@@ -32,14 +32,14 @@ class Gavel < Formula
 
   def caveats
     <<~EOS
-      To start gavel now and restart at login:
+      Run setup to register hooks with Claude Code:
+        gavel-setup
+
+      Then start gavel:
         brew services start gavel
 
       To stop gavel:
         brew services stop gavel
-
-      Edit session context (injected into every Claude Code session):
-        Open via the gavel menu bar icon → Edit Session Context
 
       To unregister hooks before uninstalling:
         gavel-uninstall-hooks
