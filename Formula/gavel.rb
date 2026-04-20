@@ -74,6 +74,8 @@ class Gavel < Formula
   def setup_user_config
     gavel_dir = Pathname.new("#{Dir.home}/.claude/gavel")
     hooks_dir = gavel_dir/"hooks"
+    gavel_dir.mkpath
+    gavel_dir.chmod(0755) if gavel_dir.exist?
     hooks_dir.mkpath
 
     (share/"gavel/hooks").children.each do |hook|
