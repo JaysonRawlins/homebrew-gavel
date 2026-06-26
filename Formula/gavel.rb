@@ -1,10 +1,10 @@
 class Gavel < Formula
   desc "Native macOS approval daemon for Claude Code session monitoring"
   homepage "https://github.com/JaysonRawlins/claude-gavel"
-  url "https://github.com/JaysonRawlins/claude-gavel/releases/download/v1.34.1/gavel-v1.34.1-macos-arm64.tar.gz"
-  sha256 "820f61e09c3887a914c898711b2f4bd4ed7ddf3fad1c666cacba9fb16ec5c3ce"
+  url "https://github.com/JaysonRawlins/claude-gavel/releases/download/v1.34.2/gavel-v1.34.2-macos-arm64.tar.gz"
+  sha256 "c626e93f384940dd7151602913a8559e4d440d5113cc1d6f383582c0d0d4c024"
   license "MIT"
-  version "1.34.1"
+  version "1.34.2"
 
   depends_on :macos
 
